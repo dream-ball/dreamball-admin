@@ -2,7 +2,6 @@ import MatchCard from "../MatchUpdate/MatchCard";
 import { useEffect, useState } from "react";
 import server from "../../../utils/utils";
 import './LiveMatches.css'
-import { CleaningServices } from "@mui/icons-material";
 
 
 // const extendMatchTime = async (matchId,match_time)=>{    
@@ -39,7 +38,7 @@ const abortMatch = async (matchId,match_time,date_wise)=>{
         headers:{
             'Content-Type' : 'application/json',
         },
-        body : JSON.stringify({match_time : match_time,date_wise : date_wise})
+        body : JSON.stringify({match_time : match_time,date_wise : date_wise}) 
     }
 
     try{
