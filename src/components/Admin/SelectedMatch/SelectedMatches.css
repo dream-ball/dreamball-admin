@@ -1,0 +1,7 @@
+.match-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Flexible 3-4 cards per row */
+    gap: 15px;
+    justify-items: center;
+  }
+  

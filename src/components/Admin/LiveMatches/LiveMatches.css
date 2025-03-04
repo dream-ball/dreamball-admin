@@ -1,0 +1,20 @@
+.live-matches-container{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: start;
+    align-items: start;
+  
+}
+
+.live-matche-wrapper h1{
+    text-align: center;
+}
+
+
+.live-matches{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    
+}

@@ -1,0 +1,42 @@
+.compare-container {
+    padding: 20px;
+    text-align: center;
+    margin: 20px;
+  }
+  
+  .matches-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .matches-column {
+    width: 45%;
+    background: #f4f4f4;
+    padding: 15px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .error {
+    color: red;
+    font-weight: bold;
+  }
+  
+.compare-container button{
+  padding: 10px;
+  border: none;
+  background-color: rgb(52, 234, 52);
+  border-radius: 10px;
+  margin: 20px;
+
+}
+
+.compare-container h1{
+  margin-bottom: 10px;
+}
