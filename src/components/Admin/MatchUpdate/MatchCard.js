@@ -6,6 +6,7 @@ import { updateMatch } from "./MatchUpdate";
 import { removeMatchFromJson } from "../Compare/Compare";
 import { removeMatchFromSelectedMatch } from "../SelectedMatch/SelectedMatch";
 import { makeItLive,extendMatchTime } from "../SelectedMatch/SelectedMatch";
+import { Button } from "@mui/material";
 
 const MatchCard = ({ match,page}) => {
 
@@ -14,23 +15,23 @@ const MatchCard = ({ match,page}) => {
     switch(page){
       case "update":
         return  <div className="buttons">
-                  <button onClick={()=>updateMatch(match.match_id)}>Update</button>
+                  <Button onClick={()=>updateMatch(match.match_id)} variant="contained" color="secondary" size="small">update</Button>
                 </div>
       case "selected":
         return  <div className="buttons">
-                  <button onClick={()=>{extendMatchTime(match.match_id,match.match_time)}}>Extend</button>
-                  <button onClick={()=>removeMatchFromSelectedMatch(match.match_id)}>Remove</button>
-                  <button onClick={()=>makeItLive(match.match_id,match.date_wise,match.match_time)}>To Live</button>
+                  <Button onClick={()=>{extendMatchTime(match.match_id,match.match_time)}} variant="contained" color="primary"  size="small">Extend</Button>
+                  <Button onClick={()=>removeMatchFromSelectedMatch(match.match_id)} variant="contained" color="primary" size="small">Remove</Button>
+                  <Button onClick={()=>makeItLive(match.match_id,match.date_wise,match.match_time)} variant="contained" color="primary" size="small">To Live</Button>
                 </div>
       case "compare":
         return  <div className="buttons">
-                  <button onClick={()=>{removeMatchFromJson()}}>Remove</button>
+                  <Button onClick={()=>{removeMatchFromJson()}} variant="contained" color="primary" size="small">Remove</Button>
                 </div>
       case "live":
         return  <div className="buttons">
-                  <button onClick={()=>{abortMatch(match.match_id,match.match_time,match.date_wise)}}>Abort</button>
-                  <button onClick={()=>{cancelMatch(match.match_id,match.match_time)}}>Cancel</button>
-                  <button onClick={()=>{initiateRefund()}}>Refund</button>
+                  <Button onClick={()=>{abortMatch(match.match_id,match.match_time,match.date_wise,match)}} variant="contained" color="primary" size="small">Revert</Button>
+                  <Button onClick={()=>{cancelMatch(match.match_id,match.match_time)}} variant="contained" color="primary" size="small">Cancel</Button>
+                  <Button onClick={()=>{initiateRefund()}} variant="contained" color="primary" size="small">Refund</Button>
                 </div>
       default:
         

@@ -19,10 +19,7 @@ export const extendMatchTime = async (matchId,match_time)=>{
     try{
         const response = await fetch(server,options);
         const result =await response.json();
-
-        console.log(result)
-
-
+        display_error(result);
     }catch(error){
         console.log(error)
         console.log('extend match error')
@@ -44,13 +41,14 @@ export async function makeItLive(matchId,date_wise,match_time){
     }
 
     let response = await fetch(server,options);
+    let result = response.json();
 
     if(!response.ok){
-      alert("Error making live :(")
-    }
+      display_error("Error making Live")
+      }
 
-    if(!response){
-      alert('match is live :)')
+    if(response.status === 200){
+      display_error(result);
     }
 
   }catch(error){
@@ -79,10 +77,10 @@ export async function removeMatchFromSelectedMatch(matchId) {
 
 export default function SelectedMatch()  {
   const [selectedMatches, setSelectedMatches] = useState([]);
-  const [upcomingMatches, setUpcomingMatches] = useState([]);
-  const [filteredMatches, setFilteredMatches] = useState([]);
-
+  const [loading,setLoading] = useState(true);
   // Fetch selected matches
+
+  
   useEffect(() => {
     async function fetchSelectedMatches() {
       try {
@@ -91,8 +89,9 @@ export default function SelectedMatch()  {
         const response = await fetch(server);
         const result = await response.json();
         setSelectedMatches(result);
+        setLoading(false);
       } catch (error) {
-        console.error("Error fetching selected matches:", error);
+        display_error("Error fetching match");
       }
     }
 
@@ -101,46 +100,51 @@ export default function SelectedMatch()  {
 
   
 
-  // Fetch upcoming matches
-  useEffect(() => {
-    async function fetchUpcomingMatches() {
-      try {
+  // // Fetch upcoming matches
+  // useEffect(() => {
+  //   async function fetchUpcomingMatches() {
+  //     try {
 
-        server.pathname = "/admin/upcomingMatches";
-        const response = await fetch(server);
-        const result = await response.json();
-        setUpcomingMatches(result);
-      } catch (error) {
-        console.error("Error fetching upcoming matches:", error);
-      }
-    }
+  //       server.pathname = "/admin/upcomingMatches";
+  //       const response = await fetch(server);
+  //       const result = await response.json();
+  //       setUpcomingMatches(result);
+  //     } catch (error) {
+  //       console.error("Error fetching upcoming matches:", error);
+  //     }
+  //   }
 
-    fetchUpcomingMatches();
-  }, []);
+  //   fetchUpcomingMatches();
+  // }, []);
 
   // Filter upcoming matches that exist in selected matches
 
-  useEffect(() => {
-    if (upcomingMatches.data && selectedMatches.length) {
-      let match_array = [];
-      selectedMatches.map((match) => {
-        match_array.push(match.match_id);
-        return 0;
-      });
-      let data = upcomingMatches.data;
-      let m_data = data.filter((match) => match_array.includes(match.match_id));
+  // useEffect(() => {
+  //   if (upcomingMatches.data && selectedMatches.length) {
+  //     let match_array = [];
+  //     selectedMatches.map((match) => {
+  //       match_array.push(match.match_id);
+  //       return 0;
+  //     });
+  //     let data = upcomingMatches.data;
+  //     let m_data = data.filter((match) => match_array.includes(match.match_id));
 
-      setFilteredMatches(m_data);
-    }
-  }, [selectedMatches, upcomingMatches]);
+  //     setFilteredMatches(m_data);
+  //   }
+  // }, [selectedMatches, upcomingMatches]);
+
+  if(loading){
+    return<h1>Loading...</h1>;
+  }
+  
 
   return (
     <div className="match-cards">
-      {filteredMatches.length > 0 ? (
-        filteredMatches.map((match) => (
+      {selectedMatches.length > 0 ? (
+        selectedMatches.map((match) => (
           <MatchCard
             key={match.match_id}
-            match={match}
+            match={JSON.parse(match.match_data)}
             page={'selected'}
             />
         ))

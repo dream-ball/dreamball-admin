@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Compare.css";
 import MatchCard from "../MatchUpdate/MatchCard";
 import server from "../../../utils/utils";
+import { Button } from "@mui/material";
 
 export const removeMatchFromJson = async (matchId)=>{
 
@@ -85,8 +86,8 @@ const Compare = () => {
       <h1>Match Comparison</h1>
       {error && <p className="error">{error}</p>}
 
-      <button onClick={handleClick}>updateFile</button>
-      <button onClick={forceRefresh}>ForceRefresh</button>
+      <Button onClick={handleClick} variant="contained" color='primary' size='small'>update file</Button>
+      <Button onClick={forceRefresh} variant='contained' color='primary' size='small'>Force refresh</Button>
 
       <div className="matches-wrapper">
         <div className="matches-column">

@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { replace, useNavigate } from "react-router-dom";
 import "./Header.css";
 import { Button } from "@mui/material";
 
@@ -23,6 +23,7 @@ const Header = ({ setIsAuthenticated }) => {
 
       localStorage.removeItem("adminToken");
       setIsAuthenticated(false);
+      replace('/admin/login');
       navigate("/admin/login"); 
     } catch (err) {
       console.error("Logout failed:", err);
@@ -37,11 +38,11 @@ const Header = ({ setIsAuthenticated }) => {
 
       <div className="user-info">
 
-        <button onClick={handleLogout}>Log out</button>
-        <Button>Hi</Button>
-        <span className="username">Admin</span>
-        <div className="profile-pic">
-          <image href="https://placehold.co/600x400"/>
+        <Button onClick={handleLogout} variant="contained" color="primary">Log out</Button>
+        
+        <div className="profile">
+          <span className="username">Admin</span>
+          <img src="https://placehold.co/50" alt="profile"/>
         </div>
       
       </div>

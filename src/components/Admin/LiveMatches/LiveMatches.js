@@ -29,8 +29,10 @@ import './LiveMatches.css'
 //     }
 // }
 
-const abortMatch = async (matchId,match_time,date_wise)=>{
+const abortMatch = async (matchId,match_time,date_wise,match)=>{
 
+    const match_data = JSON.stringify(match);
+    
 
     server.pathname = `/admin/abortLiveMatch/${matchId}`;
     const options = {
@@ -38,7 +40,7 @@ const abortMatch = async (matchId,match_time,date_wise)=>{
         headers:{
             'Content-Type' : 'application/json',
         },
-        body : JSON.stringify({match_time : match_time,date_wise : date_wise}) 
+        body : JSON.stringify({match_time : match_time,date_wise : date_wise,match_data : match_data}) 
     }
 
     try{
@@ -95,6 +97,7 @@ const initiateRefund = async ()=>{
 export default function Live() {
 
     const [liveMatch,setLiveMatch] = useState([]);
+    const [loading,setLoading] = useState(true);
 
     useEffect( ()=>{
         async function fetchdata() {
@@ -108,8 +111,10 @@ export default function Live() {
             }
 
             const data = await response.json();
+
             if(response.ok){
                 setLiveMatch(data);
+                setLoading(false);
             }
         }
         
@@ -117,6 +122,10 @@ export default function Live() {
     },[]);
 
     
+    if(loading){
+        return <h1>Loading...</h1>
+    }
+
    
     return(
         <div className="live-match-wrapper">
