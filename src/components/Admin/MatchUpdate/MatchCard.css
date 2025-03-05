@@ -8,6 +8,8 @@
     position: relative;
     width: 100%; /* Let it adapt based on grid */
     box-sizing: border-box;
+
+    height: 350px;
   }
 
   .match-card button{

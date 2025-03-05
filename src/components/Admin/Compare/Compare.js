@@ -94,7 +94,7 @@ const Compare = () => {
           <h2>Old Matches</h2>
           {oldMatches.length > 0 ? (
             oldMatches.map((match) => (
-              <MatchCard key={match.match_id} match={match} page={'compare'}/>
+              <MatchCard  key={match.match_id} match={match} page={'compare'}/>
             ))
           ) : (
             <p>No old matches available.</p>
