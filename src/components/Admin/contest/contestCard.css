@@ -1,0 +1,37 @@
+.contest-container{
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 5px;
+    padding: 10px;
+    width: 500px;
+    border-radius: 10px;
+    background-color: rgb(230, 212, 110);
+}
+
+.match-type-time{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.match-verses-board{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.match-type-time,.match-verses-board{
+    border-bottom: 1px solid gold;
+}
+
+.mega{
+    color: black;
+}
+
+.match-verses-board .team-img img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}

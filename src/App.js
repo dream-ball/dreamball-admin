@@ -4,7 +4,7 @@ import Sidebar from "./components/Admin/Sidebar/Sidebar";
 import Header from "./components/Admin/Header/Header";
 import Dashboard from "./components/Admin/Dashboard/Dashboard";
 import MatchUpdate from "./components/Admin/MatchUpdate/MatchUpdate";
-import ContestUpdate from "./components/Admin/ContestUpdate";
+import ContestUpdate from "./components/Admin/contest/ContestUpdate";
 import Compare from "./components/Admin/Compare/Compare";
 import AdminLogin from "./components/Login/AdminLogin";
 import SelectedMatch from "./components/Admin/SelectedMatch/SelectedMatch";

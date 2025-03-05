@@ -8,7 +8,7 @@ const Sidebar = ({ setActivePage }) => {
         <li onClick={() => setActivePage("dashboard")}>Dashboard</li>
         <li onClick={() => setActivePage("matchUpdate")}>Match Update</li>
         <li onClick={() => setActivePage("selectedMatch")}>Selected Match</li>
-        <li onClick={() => setActivePage("contestUpdate")}>Contest Update</li>
+        <li onClick={() => setActivePage("contestUpdate")}>Contest</li>
         <li onClick={() => setActivePage("compare")}>Compare</li>
         <li onClick={()=> setActivePage("live")}>Live</li>
       </ul>
