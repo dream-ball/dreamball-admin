@@ -5,7 +5,7 @@
     justify-content: space-evenly;
     gap: 5px;
     padding: 10px;
-    width: 500px;
+    width: 1000px;
     border-radius: 10px;
     background-color: rgb(230, 212, 110);
 }
@@ -14,12 +14,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 10px;
 }
 
 .match-verses-board{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 10px;
 }
 
 .match-type-time,.match-verses-board{
@@ -28,10 +30,15 @@
 
 .mega{
     color: black;
+    padding: 10px;
 }
 
 .match-verses-board .team-img img{
     width: 50px;
     height: 50px;
     border-radius: 50%;
+}
+
+.contests{
+    border: 1px solid white;
 }

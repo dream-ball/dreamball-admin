@@ -43,8 +43,8 @@ export default function MatchUpdate (){
 
         const response = await fetch(server);
 
-        const matchData = await response.json();
-        setMatches(matchData.data || []); // Ensure it's always an array
+        const selectedMatch = await response.json();
+        setMatches(selectedMatch.data || []); // Ensure it's always an array
       } catch (error) {
         console.error("Error fetching match data:", error);
       } finally {
