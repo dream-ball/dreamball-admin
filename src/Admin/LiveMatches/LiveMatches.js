@@ -1,8 +1,10 @@
-import MatchCard from "../MatchUpdate/MatchCard";
-import { useEffect, useState } from "react";
-import server from "../../../utils/utils";
-import './LiveMatches.css'
+import MatchCard from "../../Components/MatchCard/MatchCard";
 
+import { useEffect, useState } from "react";
+import server from "../../utils/utils";
+import './LiveMatches.css'
+import Header from "../Header/Header";
+import Loading from "../../Utils/Loading";
 
 // const extendMatchTime = async (matchId,match_time)=>{    
 
@@ -36,9 +38,10 @@ const abortMatch = async (matchId,match_time,date_wise,match)=>{
 
     server.pathname = `/admin/abortLiveMatch/${matchId}`;
     const options = {
-        method : 'POST',
-        headers:{
-            'Content-Type' : 'application/json',
+        method: 'POST',
+        headers: { 
+            'Authorization': `Bearer ${localStorage.getItem('adminToken')}`,
+            'Content-Type': 'application/json'
         },
         body : JSON.stringify({match_time : match_time,date_wise : date_wise,match_data : match_data}) 
     }
@@ -65,10 +68,16 @@ const abortMatch = async (matchId,match_time,date_wise,match)=>{
 const cancelMatch = async ()=>{
     
     server.pathname = '/admin/cancelMatch'
+    const options = {
+        method: 'GET',
+        headers: { 
+            'Authorization': `Bearer ${localStorage.getItem('adminToken')}`,
+            'Content-Type': 'application/json'
+        },
+    }
 
     try{
-        const response = await fetch(server);
-
+        const response = await fetch(server,options);
         alert(response);
 
     }catch(error){
@@ -82,6 +91,7 @@ const initiateRefund = async ()=>{
    
 
     server.pathname = '/admin/initiateRefund'
+
 
     try{
         const response = await fetch(server);
@@ -103,8 +113,16 @@ export default function Live() {
         async function fetchdata() {
 
             server.pathname = "/admin/getLiveMatches"
+            const options = {
+                method: 'GET',
+                headers: { 
+                    'Authorization': `Bearer ${localStorage.getItem('adminToken')}`,
+                    'Content-Type': 'application/json'
+                },
+            }
+            
 
-            const response = await fetch(server);
+            const response = await fetch(server,options);
             
             if(!response.ok){
                 alert("connection error")
@@ -123,11 +141,13 @@ export default function Live() {
 
     
     if(loading){
-        return <h1>Loading...</h1>
+        return <Loading/>
     }
 
    
     return(
+        <>
+        <Header/>
         <div className="live-match-wrapper">
             <h1>Live Matches</h1>
 
@@ -145,6 +165,7 @@ export default function Live() {
 
             </div>
         </div>
+        </>
     );
 }
 

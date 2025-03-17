@@ -1,0 +1,18 @@
+.ball_forms_con{
+    width:30%;
+    margin: 20px;
+}
+.ball_forms{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+}
+
+.ball_forms_con input{
+    border-radius: 4px;
+    padding: 5px;
+}
+.ball_forms_con button{
+    padding: 5px;
+}

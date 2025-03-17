@@ -1,14 +1,23 @@
 import React, { useState, useEffect } from "react";
 import "./Compare.css";
-import MatchCard from "../MatchUpdate/MatchCard";
-import server from "../../../utils/utils";
+import MatchCard from "../../Components/MatchCard/MatchCard";
+import server from "../../utils/utils";
 import { Button } from "@mui/material";
+import Header from "../Header/Header";
 
 export const removeMatchFromJson = async (matchId)=>{
 
+  server.pathname = `/admin/removedMatch/${matchId}`;
+  const options = {
+    method: 'GET',
+    headers: { 
+        'Authorization': `Bearer ${localStorage.getItem('adminToken')}`,
+        'Content-Type': 'application/json'
+    }
+}
+
   try{
-    server.pathname = `/admin/removedMatch/${matchId}`;
-    const response = await fetch(server);
+    const response = await fetch(server,options);
     
     if(!response.ok){
       console.log("Error removing match , status code: ", response.status);
@@ -26,11 +35,10 @@ export const removeMatchFromJson = async (matchId)=>{
 
 
 
-const Compare = () => {
+export default function Compare({handleLogout}) {
   const [oldMatches, setOldMatches] = useState([]);
   const [newMatches, setNewMatches] = useState([]);
   const [error, setError] = useState(null);
-  // const [refreshKey, setRefreshKey] = useState(0); // 👈 Key for forcing re-render
 
   useEffect(() => {
     const fetchMatches = async () => {
@@ -38,7 +46,20 @@ const Compare = () => {
         
         server.pathname = "/admin/compare"
         const response = await fetch(server);
-        if (!response.ok) throw new Error("Failed to fetch match data");
+        
+        if (!response.ok){
+          throw new Error("Failed to fetch match data");
+        }
+
+        const data = await response.json();
+
+        if(!data.token){
+          alert("You are not authorized");
+          handleLogout();
+          return;
+        }
+
+
 
         const { oldMatchData, newMatchData } = await response.json();
         
@@ -82,6 +103,8 @@ const Compare = () => {
 
 
   return (
+    <>
+    <Header/>
     <div className="compare-container">
       <h1>Match Comparison</h1>
       {error && <p className="error">{error}</p>}
@@ -113,7 +136,7 @@ const Compare = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
-export default Compare;

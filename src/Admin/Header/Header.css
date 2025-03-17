@@ -1,0 +1,138 @@
+/* General header styling */
+.header {
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #007BFF, #00A5FF);
+  color: white;
+  border-bottom: 2px solid rgba(240, 213, 60, 0.4);
+}
+
+/* Top bar - Logo and admin controls */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 20px;
+}
+
+.profile-img{
+  height: 25px;
+  width: 25px;
+}
+
+.logo {
+  font-size: 30px;
+  font-weight: bold;
+  color: white;
+  letter-spacing: 2px;
+}
+
+.admin-controls {
+  display: flex;
+  align-items: center;
+}
+
+.admin-controls .username {
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+.admin-controls img {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+/* Logout button */
+.admin-controls button {
+  background-color: #007BFF;
+  color: white;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 2px solid #007BFF;
+  transition: 0.3s;
+  width: 100px;
+}
+
+#logout-btn{
+  width: 100px;
+  height: 35px;
+  margin-right: 25px;
+}
+
+.admin-controls button:hover {
+  background-color: #6999ce;
+}
+
+/* Login form styling */
+.login-form form {
+  display: flex;
+  align-items: center;
+}
+
+.login-form .MuiTextField-root {
+  margin-right: 10px;
+}
+
+.login-form button {
+  background-color: #007BFF;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: 2px solid #007BFF;
+  transition: 0.3s;
+}
+
+.login-form button:hover {
+  background-color: #0056b3;
+}
+
+/* Bottom bar - Navigation */
+.bottom-bar {
+  background: rgba(0, 0, 0, 0.1);
+  padding: 10px 0;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: 2px solid transparent;
+  transition: 0.3s;
+}
+
+.nav-links a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.nav-links a.active {
+  border-color: white;
+  color: yellow;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .top-bar {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .admin-controls {
+    margin-top: 10px;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+}

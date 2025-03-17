@@ -1,18 +1,21 @@
 import { useEffect, useState } from "react";
-import MatchCard from "../MatchUpdate/MatchCard";
+import MatchCard from "../../Components/MatchCard/MatchCard";
+
 import "./SelectedMatches.css";
-import server from "../../../utils/utils";
+import server from "../../utils/utils";
 import { display_error } from "../../Utils/Util";
+import Header from "../Header/Header";
 
 
 export const extendMatchTime = async (matchId,match_time)=>{    
 
     server.pathname = `/admin/extendMatch/${matchId}`
     const options = {
-        method : 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
+      method: 'GET',
+      headers: { 
+          'Authorization': `Bearer ${localStorage.getItem('adminToken')}`,
+          'Content-Type': 'application/json'
+      },
         body : JSON.stringify({match_time:match_time}),
     }
 
@@ -99,46 +102,14 @@ export default function SelectedMatch()  {
   }, []);
 
   
-
-  // // Fetch upcoming matches
-  // useEffect(() => {
-  //   async function fetchUpcomingMatches() {
-  //     try {
-
-  //       server.pathname = "/admin/upcomingMatches";
-  //       const response = await fetch(server);
-  //       const result = await response.json();
-  //       setUpcomingMatches(result);
-  //     } catch (error) {
-  //       console.error("Error fetching upcoming matches:", error);
-  //     }
-  //   }
-
-  //   fetchUpcomingMatches();
-  // }, []);
-
-  // Filter upcoming matches that exist in selected matches
-
-  // useEffect(() => {
-  //   if (upcomingMatches.data && selectedMatches.length) {
-  //     let match_array = [];
-  //     selectedMatches.map((match) => {
-  //       match_array.push(match.match_id);
-  //       return 0;
-  //     });
-  //     let data = upcomingMatches.data;
-  //     let m_data = data.filter((match) => match_array.includes(match.match_id));
-
-  //     setFilteredMatches(m_data);
-  //   }
-  // }, [selectedMatches, upcomingMatches]);
-
   if(loading){
-    return<h1>Loading...</h1>;
+    return<Header/>
   }
   
 
   return (
+    <>
+    <Header/>
     <div className="match-cards">
       {selectedMatches.length > 0 ? (
         selectedMatches.map((match) => (
@@ -152,6 +123,7 @@ export default function SelectedMatch()  {
         <p>No selected matches found.</p>
       )}
     </div>
+    </>
   );
 };
 

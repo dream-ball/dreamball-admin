@@ -1,5 +1,5 @@
 import "./contestCard.css"
-import server from "../../../utils/utils";
+import server from "../../utils/utils";
 import { display_error } from "../../Utils/Util";
 import { useEffect,useState } from "react";
 

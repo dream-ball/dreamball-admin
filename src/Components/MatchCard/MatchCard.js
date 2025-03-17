@@ -1,14 +1,18 @@
 import React from "react";
 import "./MatchCard.css";
-
-import {  abortMatch,cancelMatch, initiateRefund } from "../LiveMatches/LiveMatches";
-import { updateMatch } from "./MatchUpdate";
-import { removeMatchFromJson } from "../Compare/Compare";
-import { removeMatchFromSelectedMatch } from "../SelectedMatch/SelectedMatch";
-import { makeItLive,extendMatchTime } from "../SelectedMatch/SelectedMatch";
 import { Button } from "@mui/material";
 
+
+import {  abortMatch,cancelMatch, initiateRefund } from "../../Admin/LiveMatches/LiveMatches";
+import { updateMatch } from "../../Admin/MatchUpdate/MatchUpdate";
+import { removeMatchFromJson } from "../../Admin/Compare/Compare";
+import { removeMatchFromSelectedMatch } from "../../Admin/SelectedMatch/SelectedMatch";
+import { makeItLive,extendMatchTime } from "../../Admin/SelectedMatch/SelectedMatch";
+import UploadBallByBall from "../../Admin/BallUpdate/UploadBallByBall";
+
 const MatchCard = ({ match,page}) => {
+
+  
 
   const renderButton = ()=>{
 
@@ -33,12 +37,19 @@ const MatchCard = ({ match,page}) => {
                   <Button onClick={()=>{cancelMatch(match.match_id,match.match_time)}} variant="contained" color="primary" size="small">Cancel</Button>
                   <Button onClick={()=>{initiateRefund()}} variant="contained" color="primary" size="small">Refund</Button>
                 </div>
+
+      case "ball-update":
+        return<div className="buttons">
+          <Button onClick={()=>{}} variant="contained" color="primary" size="small">update balls</Button>
+        </div>
+      case 'ball-form':
+        return  <UploadBallByBall/>
       default:
         
     }
   }
 
-  
+
   
  return (
     <div className = {"match-card"}>

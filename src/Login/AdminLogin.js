@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./AdminLogin.css";
+import server from '../utils/utils.js';
+import Loading from "../Utils/Loading.js";
 
 const AdminLogin = ({ setIsAuthenticated }) => {
   const [username, setUsername] = useState("");
@@ -12,17 +14,18 @@ const AdminLogin = ({ setIsAuthenticated }) => {
   useEffect(() => {
     const token = localStorage.getItem("adminToken");
     if (token) {
-      checkTokenValidity(token);
+      CheckTokenValidity(token);
     }
   }, []);
 
-  const checkTokenValidity = async (token) => {
+  const CheckTokenValidity = async (token) => {
     try {
-      const response = await fetch("http://localhost:8081/admin/protected", {
+      setLoading(true);
+      server.pathname = "/admin/protected";
+
+      const response = await fetch(server, {
         method: "GET",
-        headers: {
-          "Authorization": token,
-        },
+        headers: { "Authorization": `Bearer ${token}` },
       });
 
       if (response.ok) {
@@ -34,6 +37,8 @@ const AdminLogin = ({ setIsAuthenticated }) => {
       }
     } catch (err) {
       console.error("Token validation failed:", err);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -49,7 +54,9 @@ const AdminLogin = ({ setIsAuthenticated }) => {
     }
 
     try {
-      const response = await fetch("http://localhost:8081/admin/login", {
+      server.pathname = "/admin/login";
+
+      const response = await fetch(server, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
@@ -70,6 +77,8 @@ const AdminLogin = ({ setIsAuthenticated }) => {
       setLoading(false);
     }
   };
+
+  if (loading) return <Loading />;
 
   return (
     <div className="login-container">

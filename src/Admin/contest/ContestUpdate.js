@@ -1,13 +1,19 @@
 import React from "react";
 import './contest.css'
-import ContestCard from "./ContestCard";
 import { display_error } from "../../Utils/Util";
 import { useEffect,useState } from "react";
-import server from "../../../utils/utils";
+import server from "../../utils/utils";
+import Header from "../Header/Header";
 
 const fetchContest = async ()=>{
 
-
+  const options = {
+    method: 'GET',
+    headers: { 
+        'Authorization': `Bearer ${localStorage.getItem('adminToken')}`,
+        'Content-Type': 'application/json'
+    }
+  }
   try{
 
     const response = await fetch('localhost:8081/admin/fetchContest',{method : 'GET'});
@@ -30,10 +36,18 @@ const ContestUpdate = () => {
   
   useEffect(() => {
     async function fetchSelectedMatches() {
+
+      server.pathname = "/admin/getSelectedMatch";
+      const options = {
+        method: 'GET',
+        headers: { 
+            'Authorization': `Bearer ${localStorage.getItem('adminToken')}`,
+            'Content-Type': 'application/json'
+        }
+      }
       try {
 
-        server.pathname = "/admin/getSelectedMatch";
-        const response = await fetch(server);
+        const response = await fetch(server,options);
         const result = await response.json();
         setSelectedMatches(result);
         setLoading(false);
@@ -45,17 +59,18 @@ const ContestUpdate = () => {
     fetchSelectedMatches();
   }, []);
 
-
-,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,.,.,.,..,.,.,..,..,.,.,,,,,,545` 44`,,,, 
+  if(loading){
+    return<h1>Loading</h1>
+  }
 
   return (
 
     <>
+    <Header/>
       <div className="contest-update">
 
         {
           selectedMatches.map((match)=>{
-            match.match_id
           })
         }    
 
