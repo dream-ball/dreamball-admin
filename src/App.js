@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
 import Header from './Admin/Header/Header'
-import Dashboard from "./Admin/Dashboard/Dashboard";
 import MatchUpdate from "./Admin/MatchUpdate/MatchUpdate";
 import ContestUpdate from "./Admin/contest/ContestUpdate";
 import Compare from "./Admin/Compare/Compare";
@@ -10,9 +9,9 @@ import AdminLogin from "./Login/AdminLogin";
 import SelectedMatch from "./Admin/SelectedMatch/SelectedMatch";
 import Live from "./Admin/LiveMatches/LiveMatches";
 import LiveMatchesUp from "./Admin/BallUpdate/LiveMatchesUp";
-
-
+import WithdrawalRequest from "./Admin/Withdrawal/WithdrawalRequest";
 import "./App.css";
+import PanVerificationApproval from "./Admin/Pan/PanVerificationApproval";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(null); // Set null initially
@@ -69,6 +68,8 @@ function App() {
         <Route path="/admin/selected-match" element={isAuthenticated ? <SelectedMatch handleLogout={handleLogout}/> : <Navigate to="/admin/login" />} />
         <Route path="/admin/live" element={isAuthenticated ? <Live handleLogout={handleLogout} /> : <Navigate to="/admin/login" />} />
         <Route path="/admin/ball-update" element={isAuthenticated ? <LiveMatchesUp handleLogout={handleLogout} /> : <Navigate to="/admin/login" />} />
+        <Route path="/admin/withdraw-request" element={<WithdrawalRequest/>} />
+        <Route path="/admin/pan-verify" element={<PanVerificationApproval/>}/>
       </Routes>
     </Router>
   );

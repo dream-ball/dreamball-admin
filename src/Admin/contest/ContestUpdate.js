@@ -31,7 +31,6 @@ const ContestUpdate = () => {
 
   const [selectedMatches, setSelectedMatches] = useState([]);
   const [loading,setLoading] = useState(true);
-  // Fetch selected matches
 
   
   useEffect(() => {
@@ -75,6 +74,7 @@ const ContestUpdate = () => {
         }    
 
       </div>  
+
     </>
     
   );

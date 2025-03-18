@@ -87,12 +87,14 @@ const Header = ({ handleLogout }) => {
           <div className="nav-links">
             {[
               { path: "/admin/dashboard", label: "Dashboard" },
-              { path: "/admin/match-update", label: "Match Update" },
-              { path: "/admin/contest-update", label: "Contest Update" },
+              { path: "/admin/match-update", label: "Match" },
+              { path: "/admin/contest-update", label: "Contest" },
+              { path: "/admin/ball-update", label: "Ball" },
               { path: "/admin/compare", label: "Compare" },
-              { path: "/admin/selected-match", label: "Selected Match" },
-              { path: "/admin/live", label: "Live Matches" },
-              { path: "/admin/ball-update", label: "Ball Update" },
+              { path: "/admin/selected-match", label: "Selected" },
+              { path: "/admin/live", label: "Live" },
+              { path: "/admin/withdraw-request", label: 'withdraw'},
+              { path: "/admin/pan-verify", label: 'pan'}
             ].map((item) => (
               <Link
                 key={item.path}
