@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, Link, useLocation } from "react-router-dom";
 import { Button, TextField } from "@mui/material";
 import "./Header.css";
+import profileImage from '../../assets/profile.jpeg'
 
 const Header = ({ handleLogout }) => {
   const navigate = useNavigate();
@@ -48,7 +49,7 @@ const Header = ({ handleLogout }) => {
               Log Out
             </Button>
             <span className="username">Admin</span>
-            <img src="https://placehold.co/400" alt="Admin Profile" className="profile-img" />
+            <img src={profileImage} alt="Admin Profile" className="profile-img" />
             
           </div>
         ) : (

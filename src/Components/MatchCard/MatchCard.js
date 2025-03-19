@@ -8,11 +8,11 @@ import { updateMatch } from "../../Admin/MatchUpdate/MatchUpdate";
 import { removeMatchFromJson } from "../../Admin/Compare/Compare";
 import { removeMatchFromSelectedMatch } from "../../Admin/SelectedMatch/SelectedMatch";
 import { makeItLive,extendMatchTime } from "../../Admin/SelectedMatch/SelectedMatch";
-import UploadBallByBall from "../../Admin/BallUpdate/UploadBallByBall";
+import { useNavigate } from "react-router-dom";
 
-const MatchCard = ({ match,page}) => {
+const MatchCard = ({ match,page,path}) => {
 
-  
+  const navigate = useNavigate();
 
   const renderButton = ()=>{
 
@@ -43,7 +43,10 @@ const MatchCard = ({ match,page}) => {
           <Button onClick={()=>{}} variant="contained" color="primary" size="small">update balls</Button>
         </div>
       case 'ball-form':
-        return  <UploadBallByBall/>
+        return  <div className="buttons">
+            {console.log(path)}
+          <Button onClick={()=>navigate(path)} variant="contained" color="primary" size="small">update Ball</Button>
+        </div>
       default:
         
     }

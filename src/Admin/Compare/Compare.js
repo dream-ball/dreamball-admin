@@ -18,6 +18,10 @@ export const removeMatchFromJson = async (matchId)=>{
 
   try{
     const response = await fetch(server,options);
+
+    if(response.status === 401 || response.status === 403){
+      alert('Not authorized')
+    }
     
     if(!response.ok){
       console.log("Error removing match , status code: ", response.status);
@@ -45,20 +49,28 @@ export default function Compare({handleLogout}) {
       try {
         
         server.pathname = "/admin/compare"
-        const response = await fetch(server);
+        const options = {
+          method: 'GET',
+          headers: { 
+              'Authorization': `Bearer ${localStorage.getItem('adminToken')}`,
+              'Content-Type': 'application/json'
+          }
+      }
+        
+        const response = await fetch(server,options);
+
+        if(response.status === 401 || response.status === 403){
+          alert("Not authorized");
+        }
         
         if (!response.ok){
           throw new Error("Failed to fetch match data");
         }
 
-        const data = await response.json();
 
-        if(!data.token){
-          alert("You are not authorized");
-          handleLogout();
-          return;
+        if(response.status === 401 || response.status === 403){
+          alert("Not authorized")
         }
-
 
 
         const { oldMatchData, newMatchData } = await response.json();
@@ -78,7 +90,21 @@ export default function Compare({handleLogout}) {
     try {
 
       server.pathname = "/admin/forceRefresh"
-      await fetch(server);
+      const options = {
+        method: 'GET',
+        headers: { 
+            'Authorization': `Bearer ${localStorage.getItem('adminToken')}`,
+            'Content-Type': 'application/json'
+        }
+    }
+
+      const response = await fetch(server,options);
+
+      if(response.status === 401 || response.status === 403){
+        alert('Not authorized');
+      }
+
+
     } catch (err) {
       console.error("Force refresh failed:", err);
     }
@@ -87,7 +113,14 @@ export default function Compare({handleLogout}) {
   const handleClick = async () => {
     try {
       server.pathname = "/admin/compareUpdate";
-      const response = await fetch(server);
+      const options = {
+        method: 'GET',
+        headers: { 
+            'Authorization': `Bearer ${localStorage.getItem('adminToken')}`,
+            'Content-Type': 'application/json'
+        }
+    }
+      const response = await fetch(server,options);
       if (!response.ok){
         alert("Failed to fetch");
       }

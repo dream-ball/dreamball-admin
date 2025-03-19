@@ -4,8 +4,11 @@ import { display_error } from "../../Utils/Util";
 import { useEffect,useState } from "react";
 import server from "../../utils/utils";
 import Header from "../Header/Header";
+import Loading from "../../Utils/Loading";
 
 const fetchContest = async ()=>{
+
+  server.pathname = "/admin/fetchContest"
 
   const options = {
     method: 'GET',
@@ -16,8 +19,15 @@ const fetchContest = async ()=>{
   }
   try{
 
-    const response = await fetch('localhost:8081/admin/fetchContest',{method : 'GET'});
+    const response = await fetch(server,options);
+
+    if(response.status === 401 || response.status === 403){
+      alert('Not authorized');
+    }
+
     const result = await response.json();
+
+    
 
     console.log(result);
   }catch(err){
@@ -47,6 +57,11 @@ const ContestUpdate = () => {
       try {
 
         const response = await fetch(server,options);
+
+        if(response.status === 401 || response.status === 403){
+          alert("Not authorized");
+        }
+
         const result = await response.json();
         setSelectedMatches(result);
         setLoading(false);
@@ -59,7 +74,12 @@ const ContestUpdate = () => {
   }, []);
 
   if(loading){
-    return<h1>Loading</h1>
+    return(
+      <>
+      <Header/>
+      <Loading/>
+      </>
+    )
   }
 
   return (
@@ -69,9 +89,12 @@ const ContestUpdate = () => {
       <div className="contest-update">
 
         {
-          selectedMatches.map((match)=>{
-          })
+          selectedMatches.map((match)=>
+            <h1>{match.match_id}</h1>
+          )
         }    
+
+        
 
       </div>  
 

@@ -6,6 +6,7 @@ import './LiveMatches.css'
 import Header from "../Header/Header";
 import Loading from "../../Utils/Loading";
 
+
 // const extendMatchTime = async (matchId,match_time)=>{    
 
 //     server.pathname = `/admin/extendMatch/${matchId}`
@@ -123,6 +124,10 @@ export default function Live() {
             
 
             const response = await fetch(server,options);
+
+            if(response.status === 401 || response.status === 403){
+                alert("Not authorized");
+            }
             
             if(!response.ok){
                 alert("connection error")

@@ -12,6 +12,7 @@ import LiveMatchesUp from "./Admin/BallUpdate/LiveMatchesUp";
 import WithdrawalRequest from "./Admin/Withdrawal/WithdrawalRequest";
 import "./App.css";
 import PanVerificationApproval from "./Admin/Pan/PanVerificationApproval";
+import UploadBallByBall from "./Admin/BallUpdate/UploadBallByBall";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(null); // Set null initially
@@ -70,6 +71,7 @@ function App() {
         <Route path="/admin/ball-update" element={isAuthenticated ? <LiveMatchesUp handleLogout={handleLogout} /> : <Navigate to="/admin/login" />} />
         <Route path="/admin/withdraw-request" element={<WithdrawalRequest/>} />
         <Route path="/admin/pan-verify" element={<PanVerificationApproval/>}/>
+        <Route path="/admin/live/match/:match_id" element={<UploadBallByBall/>}/>
       </Routes>
     </Router>
   );

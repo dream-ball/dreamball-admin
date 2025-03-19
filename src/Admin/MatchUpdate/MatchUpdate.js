@@ -20,6 +20,12 @@ const updateMatch = async (matchId) => {
     }
     try {
       const response = await fetch(server,options);
+
+      if(response.status === 401 || response.status === 403){
+        alert("Not authorized");
+      }
+
+
       const result = await response.json();
       if (!response.ok) {
         throw new Error(result.error);
@@ -53,7 +59,7 @@ export default function MatchUpdate ({handleLogout}){
     
        
     
-        
+        console.log(server,options)
         const response = await fetch(server, options);
 
         if (response.status === 401 || response.status === 403) {
@@ -64,9 +70,9 @@ export default function MatchUpdate ({handleLogout}){
 
         
         const selectedMatch = await response.json();
-        const {token} = selectedMatch;
+        // const {token} = selectedMatch;
 
-        console.log(token)
+        // console.log(token)
     
        
         setMatches(selectedMatch.data || []);

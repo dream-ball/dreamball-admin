@@ -89,7 +89,19 @@ export default function SelectedMatch()  {
       try {
 
         server.pathname = "/admin/getSelectedMatch";
-        const response = await fetch(server);
+        const options = {
+          method: 'GET',
+          headers: { 
+              'Authorization': `Bearer ${localStorage.getItem('adminToken')}`,
+              'Content-Type': 'application/json'
+          },
+        }
+        const response = await fetch(server,options);
+
+        if(response.status === 401 || response.status === 403){
+          alert("Not authorized");
+        } 
+        
         const result = await response.json();
         setSelectedMatches(result);
         setLoading(false);
