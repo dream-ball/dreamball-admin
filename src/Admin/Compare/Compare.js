@@ -86,7 +86,7 @@ export default function Compare({handleLogout}) {
       }
     };
     fetchMatches();
-  },[]); 
+  },); 
 
   const forceRefresh = async () => {
     try {

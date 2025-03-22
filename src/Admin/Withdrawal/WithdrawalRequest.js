@@ -40,6 +40,7 @@ const WithdrawalRequest = () => {
   };
 
   const [reasons, setReasons] = useState({});
+  console.log(reasons)
 
   const handleReasonChange = (event, requestId) => {
     setReasons((prev) => ({

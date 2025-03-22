@@ -85,7 +85,7 @@ export default function MatchUpdate ({handleLogout}){
     };
     
     fetchMatches();
-  }, []);
+  },);
 
 
 

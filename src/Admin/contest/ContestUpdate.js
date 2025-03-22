@@ -71,7 +71,7 @@ const ContestUpdate = ({handleLogout}) => {
     }
 
     fetchSelectedMatches();
-  }, []);
+  },);
 
   if(loading){
     return(

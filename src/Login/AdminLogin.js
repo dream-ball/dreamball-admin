@@ -11,12 +11,7 @@ const AdminLogin = ({ setIsAuthenticated }) => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const token = localStorage.getItem("adminToken");
-    if (token) {
-      CheckTokenValidity(token);
-    }
-  }, []);
+
 
   const CheckTokenValidity = async (token) => {
     try {
@@ -41,6 +36,15 @@ const AdminLogin = ({ setIsAuthenticated }) => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem("adminToken");
+    if (token) {
+      CheckTokenValidity(token);
+    }
+  },);
+
+
 
   const handleLogin = async (e) => {
     e.preventDefault();

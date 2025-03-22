@@ -119,7 +119,7 @@ export default function SelectedMatch({handleLogout})  {
     }
 
     fetchSelectedMatches();
-  }, []);
+  },);
 
   
   if(loading){
