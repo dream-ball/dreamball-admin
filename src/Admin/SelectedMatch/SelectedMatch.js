@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import MatchCard from "../../Components/MatchCard/MatchCard";
 
 import "./SelectedMatches.css";
-import server from "../../utils/utils";
-import { display_error } from "../../Utils/Util";
+import { server,display_error } from "../../utils/utils";
 import Header from "../Header/Header";
 
 

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./AdminLogin.css";
-import server from '../utils/utils.js';
-import Loading from "../Utils/Loading.js";
+import {server} from '../utils/utils.js';
+import Loading from "../utils/Loading.js";
 
 const AdminLogin = ({ setIsAuthenticated }) => {
   const [username, setUsername] = useState("");

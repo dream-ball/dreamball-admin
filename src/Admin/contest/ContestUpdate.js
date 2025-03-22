@@ -1,10 +1,9 @@
 import React from "react";
 import './contest.css'
-import { display_error } from "../../Utils/Util";
 import { useEffect,useState } from "react";
-import server from "../../utils/utils";
+import {server,display_error} from "../../utils/utils";
 import Header from "../Header/Header";
-import Loading from "../../Utils/Loading";
+import Loading from "../../utils/Loading";
 
 const fetchContest = async ()=>{
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Compare.css";
 import MatchCard from "../../Components/MatchCard/MatchCard";
-import server from "../../utils/utils";
+import {server} from "../../utils/utils";
 import { Button } from "@mui/material";
 import Header from "../Header/Header";
 

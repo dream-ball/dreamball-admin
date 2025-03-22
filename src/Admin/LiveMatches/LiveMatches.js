@@ -1,10 +1,10 @@
 import MatchCard from "../../Components/MatchCard/MatchCard";
 
 import { useEffect, useState } from "react";
-import server from "../../utils/utils";
+import {server} from "../../utils/utils";
 import './LiveMatches.css'
 import Header from "../Header/Header";
-import Loading from "../../Utils/Loading";
+import Loading from "../../utils/Loading";
 
 
 // const extendMatchTime = async (matchId,match_time)=>{    

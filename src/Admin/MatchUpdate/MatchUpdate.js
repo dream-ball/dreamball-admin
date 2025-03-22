@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import MatchCard from "../../Components/MatchCard/MatchCard";
 
 import "./MatchUpdate.css";
-import { display_error } from "../../Utils/Util";
-import server from "../../utils/utils";
+import { display_error } from "../../utils/utils";
+import {server} from "../../utils/utils";
 import Header from "../Header/Header";
 
 

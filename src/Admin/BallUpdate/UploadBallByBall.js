@@ -2,8 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "./BallForm.css";
-import server from "../../utils/utils";
-import { display_error } from "../../Utils/Util";
+import { server,display_error } from "../../utils/utils";
 import Header from "../Header/Header";
 import "./BallForm.css";
 

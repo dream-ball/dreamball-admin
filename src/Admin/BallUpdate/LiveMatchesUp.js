@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import MatchCard from "../../Components/MatchCard/MatchCard";
-import server from "../../utils/utils";
+import {server} from "../../utils/utils";
 import Header from "../Header/Header";
-import Loading from "../../Utils/Loading";
+import Loading from "../../utils/Loading";
 
 
 export default function LiveMatches() {
