@@ -37,7 +37,7 @@ const fetchContest = async ()=>{
 
 fetchContest();
 
-const ContestUpdate = () => {
+const ContestUpdate = ({handleLogout}) => {
 
   const [selectedMatches, setSelectedMatches] = useState([]);
   const [loading,setLoading] = useState(true);
@@ -60,6 +60,7 @@ const ContestUpdate = () => {
 
         if(response.status === 401 || response.status === 403){
           alert("Not authorized");
+          handleLogout();
         }
 
         const result = await response.json();

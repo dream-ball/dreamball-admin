@@ -32,7 +32,7 @@ import Loading from "../../Utils/Loading";
 //     }
 // }
 
-const abortMatch = async (matchId,match_time,date_wise,match)=>{
+const abortMatch = async (handleLogout,matchId,match_time,date_wise,match)=>{
 
     const match_data = JSON.stringify(match);
     
@@ -51,7 +51,10 @@ const abortMatch = async (matchId,match_time,date_wise,match)=>{
         const response = await fetch(server,options);
         const result = await response.json();
 
-
+        if(response.status === 401){
+            handleLogout();
+        }
+        
         if(!response.ok){
             console.log("Error while fetching ! ")
         }
@@ -66,9 +69,9 @@ const abortMatch = async (matchId,match_time,date_wise,match)=>{
     }
 }
 
-const cancelMatch = async ()=>{
+const cancelMatch = async (matchId)=>{
     
-    server.pathname = '/admin/cancelMatch'
+    server.pathname = `/admin/cancelMatch/${matchId}`
     const options = {
         method: 'GET',
         headers: { 

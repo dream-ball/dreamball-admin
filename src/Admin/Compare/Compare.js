@@ -61,6 +61,7 @@ export default function Compare({handleLogout}) {
 
         if(response.status === 401 || response.status === 403){
           alert("Not authorized");
+          handleLogout();
         }
         
         if (!response.ok){
@@ -70,6 +71,7 @@ export default function Compare({handleLogout}) {
 
         if(response.status === 401 || response.status === 403){
           alert("Not authorized")
+          handleLogout();
         }
 
 
@@ -84,7 +86,7 @@ export default function Compare({handleLogout}) {
       }
     };
     fetchMatches();
-  }, []); 
+  },[]); 
 
   const forceRefresh = async () => {
     try {

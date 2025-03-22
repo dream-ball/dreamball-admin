@@ -35,7 +35,7 @@ const MatchCard = ({ match,page,path}) => {
         return  <div className="buttons">
                   <Button onClick={()=>{abortMatch(match.match_id,match.match_time,match.date_wise,match)}} variant="contained" color="primary" size="small">Revert</Button>
                   <Button onClick={()=>{cancelMatch(match.match_id,match.match_time)}} variant="contained" color="primary" size="small">Cancel</Button>
-                  <Button onClick={()=>{initiateRefund()}} variant="contained" color="primary" size="small">Refund</Button>
+                  <Button onClick={()=>{initiateRefund(match.match_id)}} variant="contained" color="primary" size="small">Refund</Button>
                 </div>
 
       case "ball-update":

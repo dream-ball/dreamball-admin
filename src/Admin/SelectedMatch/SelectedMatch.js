@@ -11,7 +11,7 @@ export const extendMatchTime = async (matchId,match_time)=>{
 
     server.pathname = `/admin/extendMatch/${matchId}`
     const options = {
-      method: 'GET',
+      method: 'POST',
       headers: { 
           'Authorization': `Bearer ${localStorage.getItem('adminToken')}`,
           'Content-Type': 'application/json'
@@ -39,6 +39,7 @@ export async function makeItLive(matchId,date_wise,match_time){
       method: "POST",
           headers: {
             "Content-Type": "application/json",
+            'Authorization': `Bearer ${localStorage.getItem('adminToken')}`,
           },
           body: JSON.stringify({ date_wise,match_time}),
     }
@@ -65,7 +66,14 @@ export async function removeMatchFromSelectedMatch(matchId) {
   try {
 
     server.pathname = `/admin/removeSelectedMatch/${matchId}`;
-    const response = await fetch(server,{ method: "POST" });
+    const options = {
+      method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${localStorage.getItem('adminToken')}`,
+          },
+    }
+    const response = await fetch(server,options);
 
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
@@ -78,7 +86,7 @@ export async function removeMatchFromSelectedMatch(matchId) {
   }
 }
 
-export default function SelectedMatch()  {
+export default function SelectedMatch({handleLogout})  {
   const [selectedMatches, setSelectedMatches] = useState([]);
   const [loading,setLoading] = useState(true);
   // Fetch selected matches
@@ -100,6 +108,7 @@ export default function SelectedMatch()  {
 
         if(response.status === 401 || response.status === 403){
           alert("Not authorized");
+          handleLogout();
         } 
         
         const result = await response.json();

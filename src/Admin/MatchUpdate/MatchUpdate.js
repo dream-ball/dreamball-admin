@@ -23,6 +23,7 @@ const updateMatch = async (matchId) => {
 
       if(response.status === 401 || response.status === 403){
         alert("Not authorized");
+
       }
 
 
@@ -64,7 +65,7 @@ export default function MatchUpdate ({handleLogout}){
 
         if (response.status === 401 || response.status === 403) {
           alert('Not authorized')
-          window.location.href = '/admin/login';
+          handleLogout();
           return;
         }
 

@@ -197,7 +197,7 @@ export default function UploadBallByBall() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `$Bearer ${localStorage.getItem("AdminToken ")}` || "",
+          Authorization: `Bearer ${localStorage.getItem("adminToken")}`,
         },
         body: JSON.stringify(modifiedData),
       });
@@ -252,9 +252,11 @@ export default function UploadBallByBall() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: ` Bearer ${localStorage.getItem("AdminToken")}` || "",
+          Authorization: ` Bearer ${localStorage.getItem("adminToken")}`,
         },
       });
+
+
       let result = await response.json();
       if (!response.ok) throw new Error(result.error);
       display_error(result.msg);
@@ -277,9 +279,11 @@ export default function UploadBallByBall() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: localStorage.getItem("AdminToken") || "",
+          Authorization: `Bearer ${localStorage.getItem("adminToken")}`,
         },
       });
+
+
       let result = await response.json();
       if (!response.ok) throw new Error(result.error);
       display_error(result.msg);
